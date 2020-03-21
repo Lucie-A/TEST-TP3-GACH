@@ -4,6 +4,7 @@
       <!--Ajout du nombre de question-->
       Nb Questions :
       {{ listeQuestions ? listeQuestions.length : 0 }}
+      <button v-for="question in listeQuestions" :key="question.id">{{ question.id }}</button>
   </div>
 </template>
 <script>
