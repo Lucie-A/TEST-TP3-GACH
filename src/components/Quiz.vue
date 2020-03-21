@@ -20,7 +20,7 @@ var lesquestions = new Vue({
   methods: {
     titrequestions: function (event) {
       // `this` fait référence à l'instance de Vue à l'intérieur de `methods`
-      document.write(<h3>{{ question.titre }}</h3>)
+      document.write(<h3>{{ question,titre }}</h3>)
       // `event` est l'évènement natif du DOM
       if (event) {
         alert(event.target.tagName)
