@@ -1,19 +1,41 @@
 <template>
-  <div>Quiz : {{ idQuiz }}</div>
+  <div>
+      <h2>{{ quiz.titre }}</h2>
+      <!--Ajout du nombre de question-->
+      Nb Questions :
+      {{ listeQuestions ? listeQuestions.length : 0 }}
+  </div>
 </template>
-
 <script>
-import { getQuizAjax } from "../data/jsonQuiz";
+import { getQuiz } from "../data/quiz";
+import { getQuizAjax } from "../data/ajax";
+
 export default {
   name: "Quiz",
-  props: ["idQuiz]"],
+  props: ["idQuiz"],
   data: function() {
-    return {};
+    return {
+      listeQuestions: null
+    };
+  },
+  watch: {
+    idQuiz: function() {
+      if (this.idQuiz) {
+        getQuizAjax(this.idQuiz).then(json => {
+          this.listeQuestions = json;
+        });
+      }
+    }
   },
   computed: {
-    quiz: function() {
-      return getQuizAjax(this.idQuiz);
+    quiz : function() {
+      return getQuiz(this.idQuiz);
     }
   }
 };
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

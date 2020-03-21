@@ -1,8 +1,16 @@
 <template>
   <div v-if="theme">
-    <div class="d-flex align-items-end quiz-title-bloc" v-for="quiz in listeQuiz" :key="quiz.id">
-      <h3 class="flex-fill quiz-title-text">{{quiz.titre}}</h3>
-      <button type="button" class="btn btn-secondary btn-sm">
+    <div
+      class="d-flex align-items-end quiz-title-bloc"
+      v-for="quiz in listeQuiz"
+      :key="quiz.id"
+    >
+      <h3 class="flex-fill quiz-title-text">{{ quiz.titre }}</h3>
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        @click="selectQuiz(quiz.id)"
+      >
         Lancer
       </button>
     </div>
@@ -10,7 +18,7 @@
 </template>
 
 <script>
-import { getTheme, getListeQuiz } from "../../data/quiz.js";
+import { getTheme, getListeQuiz } from "../data/quiz";
 export default {
   name: "Theme",
   props: ["idTheme"],
@@ -25,6 +33,12 @@ export default {
     },
     listeQuiz: function() {
       return getListeQuiz(this.idTheme);
+    }
+  },
+  methods: {
+    selectQuiz: function(idQuiz) {
+      this.idQuiz = idQuiz;
+      this.$emit("select-quiz", idQuiz);
     }
   }
 };
