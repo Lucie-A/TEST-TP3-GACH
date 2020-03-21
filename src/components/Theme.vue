@@ -11,7 +11,7 @@
         class="btn btn-secondary btn-sm"
         @click="selectQuiz(quiz.id)"
       >
-        Lancer
+        Lancer le quizz
       </button>
     </div>
   </div>
